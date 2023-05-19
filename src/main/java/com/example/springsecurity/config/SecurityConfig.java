@@ -30,8 +30,9 @@ public class SecurityConfig{
 //        конфигурируем работу Спринг Секьюрити
         httpSecurity//csrf().disable() //откл. защиту от межсайтовой подделки запросов
                 .authorizeHttpRequests() //указываем какие строины должны быть защищены ауторизацией
-                .requestMatchers("/authentication", "/error", "/registration","/recouces/**",
-                        "/static/**","/css/**","/js/**", "/img/**").permitAll()
+                .requestMatchers("/authentication", "/error", "/registration","/resources/**",
+                        "/static/**","/css/**","/js/**", "/img/**", "/product",
+                        "/product/info/{id}", "/product/search").permitAll()
                 //указываем что не
         // аутентифицированные пользователи могут зайти на страницу аутентификации и на объект
         // ошибки с помощью permitAll указываем что не ауктентифицированные пользователи могут
@@ -52,7 +53,8 @@ public class SecurityConfig{
         // умолчанию для обработки формы аутентификации по средствам Spring Security. Spring
         // Security будет ждать объект с формы аутентификации и затем сверять логин и пароль с
         // данными в БД
-                .defaultSuccessUrl("/index", true) // указываем на какой url необходимо направить
+                .defaultSuccessUrl("/person account", true) // указываем на какой url необходимо
+                // направить
         // пользователя после успешной аутентификации. Вторым аргументом указывется true, чтобы
         // перенаправление шло в любом случае после успешной конфигурации
                 .failureUrl("/authentication?error")
@@ -67,11 +69,6 @@ public class SecurityConfig{
         this.personDetailsService = personDetailsService;
     }
 
-    //    private final AuthenticationProvider authenticationProvider;
-//
-//    public SecurityConfig(AuthenticationProvider authenticationProvider) {
-//        this.authenticationProvider = authenticationProvider;
-//    }
 
     protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 //        authenticationManagerBuilder.authenticationProvider(authenticationProvider);

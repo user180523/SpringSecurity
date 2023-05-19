@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+</head>
+<body>
+<form method="get" th:action="@{/logout}">
+    <button type="submit">Выйти из личного кабинета</button>
+</form>
+<form method="get" th:action="@{/cart}">
+    <button type="submit">Корзина покупок</button>
+</form>
+<form method="get" th:action="@{/orders}">
+    <input type = "submit" value="Заказы">
+</form>
+<h3>Личный кабинет</h3>
+<h3>Сортировка, поиск, фильтрация</h3>
+
+<form th:method="post" th:action="@{/person account/product/search}">
+    <fieldset>
+        <legend>Выберите параметры для сортировки,  поиска и фильтрации:</legend>
+        <label for="search">Поиск по наименованию</label>
+        <input type="text" id="search" name="search" th:value="*{value_search}">
+        <br>
+        <p>Цена, ₽</p>
+        <label for="ot">От</label>
+        <input type="text" name="ot" id="ot" th:value="*{value_price_ot}">
+        <label for="do">До</label>
+        <input type="text" name="do" id="do" th:value="*{value_price_do}">
+        <br>
+        <br>
+        <div>
+            <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price">
+            <label for="ascending_price">Отсортировать по возрастанию цены</label>
+            <input type="radio" id="descending_price" name="price"
+                   value="sorted_by_descending_price">
+            <label for="descending_price">Отсортировать по убыванию цены</label>
+            <p>Категория товаров: </p>
+            <input type="radio" id="brick" name="contract" value="brick">
+            <label type="brick">Кирпич</label>
+            <input type="radio" id="wood" name="contract" value="wood">
+            <label type="wood">Древесно-плитные материалы</label>
+            <input type="radio" id="mixes" name="contract" value="mixes">
+            <label type="mixes">Сухие строительные смеси</label>
+            <br>
+            <br>
+            <input type="submit" value="Найти">
+        </div>
+    </fieldset>
+</form>
+<h3>Доступные товары:</h3>
+<div th:each="product : ${products}">
+    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+    <br>
+    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+    <a th:href="@{/cart/add/{id}(id=${product.getId()})}">Добавить в корзину</a>
+    <hr>
+</div>
+</body>
+</html>
