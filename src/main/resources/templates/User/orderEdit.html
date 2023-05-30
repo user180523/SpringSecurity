@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Заказы</title>
+</head>
+<body>
+<h3>Заказы</h3>
+<br>
+<!--<form th:method="POST" th:action="@{/admin/order/edit/{id}(id=${order.get().getId()})}"
+      th:object="${order}">
+<h3 th:text="'Заказ №' + ${order.get().getNumber()}"></h3>
+  <img th:src="'/img/' + ${order.get().getProduct().getImageList()[0].getFileName()}" width="300px">
+  <p th:text="'Наименование: ' + ${order.get().getProduct().getTitle()}">
+<p th:text="'Количество: ' + ${order.get().getCount()}"></p>
+  <p th:text="'Цена: ' + ${order.get().getPrice()}"></p>
+  <p th:text="'Дата заказа: ' + ${#temporals.format(order.get().getDateTime(), 'dd-MMM-yyyy')}"></p>
+  <p th:text="'Cтатус: ' + ${order.get().getStatus()}"></p>
+  <input type="text" th:field="*{status}" id="status">*/
+  <br>
+
+  <input type="submit" value="Редактировать">
+</form>-->
+<a th:href="@{/admin/order/edit/{id}/1(id=${order.get().getId()})}">Меняется статутс заказа</a>
+</body>
+</html>

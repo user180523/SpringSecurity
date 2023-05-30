@@ -45,6 +45,12 @@ public class MainController {
         this.orderRepository = orderRepository;
     }
 
+    @GetMapping("/")
+    public String main(Model model){
+        model.addAttribute("products", productService.getAllProduct());
+        return "/User/main";
+    }
+
     @GetMapping("/person account")
     public String index(Model model){
 //        получим объект уатентификации - с помощью СпрингКонтекстХолдер обращаемся к контексту и

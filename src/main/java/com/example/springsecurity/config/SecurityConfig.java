@@ -32,7 +32,7 @@ public class SecurityConfig{
                 .authorizeHttpRequests() //указываем какие строины должны быть защищены ауторизацией
                 .requestMatchers("/authentication", "/error", "/registration","/resources/**",
                         "/static/**","/css/**","/js/**", "/img/**", "/product",
-                        "/product/info/{id}", "/product/search").permitAll()
+                        "/product/info/{id}", "/product/search","/","/person account/product/search").permitAll()
                 //указываем что не
         // аутентифицированные пользователи могут зайти на страницу аутентификации и на объект
         // ошибки с помощью permitAll указываем что не ауктентифицированные пользователи могут

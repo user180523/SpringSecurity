@@ -2,12 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Список товаров</title>
+    <title>Title</title>
 </head>
 <body>
-<h3>Главная страница</h3>
+<a href="/authentication">Войти в ЛК</a>
+<br>
+<a href="/registration">Зарегистрироваться</a>
+<h3>Доступные товары:</h3>
 <h3>Сортировка, поиск, фильтрация</h3>
-<form th:method="post" th:action="@{/product/search}">
+
+<form th:method="post" th:action="@{/person account/product/search}">
     <fieldset>
         <legend>Выберите параметры для сортировки,  поиска и фильтрации:</legend>
         <label for="search">Поиск по наименованию</label>
@@ -39,27 +43,13 @@
         </div>
     </fieldset>
 </form>
-<h3>Результат поиска, сортировки и фильтрации</h3>
-<div th:each="product : ${search_product}">
-    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
-    <br>
-    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-    <hr>
-</div>
+
 <div th:each="product : ${products}">
-    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
-    <br>
-    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-    <hr>
-</div>
-<div th:each="product : ${products}">
-    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
-    <br>
-    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-    <hr>
+  <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+  <br>
+  <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+  <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+  <hr>
 </div>
 </body>
 </html>
